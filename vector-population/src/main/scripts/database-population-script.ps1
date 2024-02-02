@@ -1,5 +1,5 @@
 # Set the path to the JAR files
-$JAR_PATH = "target/lib/postgresql-42.2.23.jar;target/technical-assessment-1.0.0.jar"
+$JAR_PATH = "target/lib/postgresql-42.2.23.jar;target/vector-population-1.0.0.jar"
 
 # Set the path to the JDK 17 installation
 $env:JAVA_HOME = 'C:\Program Files\Java\jdk-17'
