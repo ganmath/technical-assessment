@@ -84,22 +84,19 @@ Execute the provided PowerShell script to run the Java application:
 
 ## Java Code
 DatabasePopulator.java
-[Provide detailed documentation for the DatabasePopulator class.]
+This the main java code which populates the generated numbers in the required table
 
 Utils.java
-[Provide detailed documentation for the Utils class.]
+This is Util class
 
 ## SQL Scripts
 ddl_script.sql
-[Document the purpose of the DDL script and its contents.]
+This is ddl script to create the table
 
 ## PowerShell Script
 database-population-script.ps1
-[Document the purpose of the PowerShell script and its contents.]
+This is the script to run the program
 
 ## Property Files
 database.properties
-[Document the properties in the database.properties file and their purpose.]
-
 exception-messages.properties
-[Document the properties in the exception-messages.properties file and their purpose.]
