@@ -1,0 +1,19 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+
+# Compiled Java classes
+*.class
+
+# Compiled Java binaries
+*.jar
+
+# Logs
+*.log
+
+# Dependency directories
+lib/
