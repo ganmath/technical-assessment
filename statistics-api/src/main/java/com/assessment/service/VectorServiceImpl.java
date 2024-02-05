@@ -4,10 +4,13 @@ package com.assessment.service;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import org.jvnet.hk2.annotations.Service;
+
 import com.assessment.dao.VectorDAO;
 import com.assessment.model.VectorEntity;
 
 @RequestScoped
+@Service
 public class VectorServiceImpl implements VectorService {
     @Inject
     private VectorDAO vectorDAO;
