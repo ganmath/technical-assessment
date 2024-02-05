@@ -20,17 +20,21 @@ public class StatisticsController {
     }
 
     @GetMapping("/{vectorId}")
-    public String calculateStatistics(@PathVariable int vectorId) {
+    public StatisticsResponse calculateStatistics(@PathVariable int vectorId) {
         VectorEntity vector = vectorService.getVectorById(vectorId);
 
         if (vector == null) {
-            return "Vector not found";
+            // You might want to handle this differently, e.g., return a 404 response
+            return null;
         }
 
         double mean = calculateMean(vector.getNumbersArray());
         double standardDeviation = calculateStandardDeviation(vector.getNumbersArray());
 
-        return String.format("Mean: %.2f, Standard Deviation: %.2f", mean, standardDeviation);
+        // Create a StatisticsResponse object with the calculated values
+        StatisticsResponse response = new StatisticsResponse(mean, standardDeviation);
+
+        return response;
     }
 
     // Dummy method to calculate mean (replace with your actual logic)
@@ -60,5 +64,25 @@ public class StatisticsController {
             sum += value;
         }
         return sum;
+    }
+
+    // Inner class representing the JSON response structure
+    private static class StatisticsResponse {
+        private final double mean;
+        private final double standardDeviation;
+
+        public StatisticsResponse(double mean, double standardDeviation) {
+            this.mean = mean;
+            this.standardDeviation = standardDeviation;
+        }
+
+        // Getters for JSON serialization
+        public double getMean() {
+            return mean;
+        }
+
+        public double getStandardDeviation() {
+            return standardDeviation;
+        }
     }
 }

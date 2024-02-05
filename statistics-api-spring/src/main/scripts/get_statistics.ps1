@@ -1,16 +1,31 @@
-param (
-    [Parameter(Mandatory=$true)]
-    [int]$vectorId
-)
+# PowerShell script to call the RESTful microservice and display Mean and Standard Deviation
 
-# Set the base URL of your RESTful microservice
-$baseUrl = "http://localhost:8080/api/statistics"
+# Specify the vector ID as a command-line argument
+$vectorId = $args[0]
 
-# Build the complete URL with the vector ID
-$url = "$baseUrl/$vectorId"
+# Check if vector ID is provided
+if (-not $vectorId) {
+    Write-Output "Please provide a vector ID as a command-line argument."
+    exit 1
+}
 
-# Invoke the RESTful endpoint to get statistics
-$response = Invoke-RestMethod -Uri $url -Method Get
+# URL for the RESTful microservice
+$url = "http://localhost:8080/api/statistics/$vectorId"
 
-# Display the result
-Write-Host "Mean: $($response.Mean), Standard Deviation: $($response.StandardDeviation)"
+try {
+    # Invoke the RESTful API
+    $response = Invoke-RestMethod -Uri $url -Method Get
+    
+    # Extract Mean and Standard Deviation from the response
+    $mean = $response.mean
+    $stdDev = $response.standardDeviation
+    
+    # Display the results
+    Write-Output "Vector ID: $vectorId"
+    Write-Output "Mean: $mean"
+    Write-Output "Standard Deviation: $stdDev"
+} catch {
+    # Handle errors
+    Write-Output "Error: $_"
+    exit 1
+}
