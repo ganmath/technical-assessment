@@ -40,12 +40,12 @@ public class StatisticsController {
     }
 
 
-    // Dummy method to calculate mean (replace with your actual logic)
+    // Method to calculate mean
     private double calculateMean(int[] vector) {
         return vector.length > 0 ? (double) sum(vector) / vector.length : 0;
     }
 
-    // Dummy method to calculate standard deviation (replace with your actual logic)
+    // Method to calculate standard deviation 
     private double calculateStandardDeviation(int[] vector) {
         if (vector.length == 0) {
             return 0;
