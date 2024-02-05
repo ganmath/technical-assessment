@@ -3,6 +3,7 @@ package com.assessment.controller;
 import com.assessment.model.VectorEntity;
 import com.assessment.service.VectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,12 @@ public class StatisticsController {
     }
 
     @GetMapping("/{vectorId}")
-    public StatisticsResponse calculateStatistics(@PathVariable int vectorId) {
+    public ResponseEntity<StatisticsResponse> calculateStatistics(@PathVariable int vectorId) {
         VectorEntity vector = vectorService.getVectorById(vectorId);
 
         if (vector == null) {
-            // You might want to handle this differently, e.g., return a 404 response
-            return null;
+            // Return a 404 response
+            return ResponseEntity.notFound().build();
         }
 
         double mean = calculateMean(vector.getNumbersArray());
@@ -34,8 +35,10 @@ public class StatisticsController {
         // Create a StatisticsResponse object with the calculated values
         StatisticsResponse response = new StatisticsResponse(mean, standardDeviation);
 
-        return response;
+        // Return the response with a 200 OK status
+        return ResponseEntity.ok(response);
     }
+
 
     // Dummy method to calculate mean (replace with your actual logic)
     private double calculateMean(int[] vector) {
