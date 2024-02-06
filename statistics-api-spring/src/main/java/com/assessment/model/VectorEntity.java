@@ -16,9 +16,21 @@ public class VectorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vector_id")
     private int vectorId;
+    
+    @Column(name = "size", nullable = false)
+    private Integer size;
 
-    @Column(name = "vector_name", nullable = false)
-    private String vectorName;
+    public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	@Column(name = "vector_name", nullable = false)
+    private String vectorName = "DefaultVectorName"; // Set a default value
+
 
     @Column(name = "numbers_array", columnDefinition = "INT ARRAY", nullable = false)
     private int[] numbersArray;
