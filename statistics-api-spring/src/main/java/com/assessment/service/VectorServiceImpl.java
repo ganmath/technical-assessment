@@ -1,9 +1,10 @@
 package com.assessment.service;
 
-import com.assessment.controller.StatisticsController.SizeRequest;
+import com.assessment.controller.StatisticsController.VectorRequest;
 import com.assessment.dao.VectorDAO;
 import com.assessment.model.VectorEntity;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +54,12 @@ public class VectorServiceImpl implements VectorService {
     }
 
     @Override
-    public VectorEntity generateRandomVector(SizeRequest sizeRequest) {
+    public VectorEntity generateRandomVector(VectorRequest sizeRequest) {
     	
     	VectorEntity vector = new VectorEntity();
         vector.setSize(sizeRequest.getSize());
         vector.setVectorName(sizeRequest.getVectorName());
+        
         int size = vector.getSize();
         int[] numbersArray = new int[size];
 

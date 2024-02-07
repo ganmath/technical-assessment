@@ -1,6 +1,6 @@
 package com.assessment.service;
 
-import com.assessment.controller.StatisticsController.SizeRequest;
+import com.assessment.controller.StatisticsController.VectorRequest;
 import com.assessment.model.VectorEntity;
 
 public interface VectorService {
@@ -13,5 +13,5 @@ public interface VectorService {
 
     double calculateStandardDeviation(int[] vector);
 
-	VectorEntity generateRandomVector(SizeRequest sizeRequest);
+	VectorEntity generateRandomVector(VectorRequest sizeRequest);
 }

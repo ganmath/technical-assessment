@@ -3,6 +3,8 @@ package com.assessment.controller;
 import com.assessment.model.VectorEntity;
 import com.assessment.service.VectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +26,15 @@ public class StatisticsController {
 	}
 
 	@GetMapping("/{vectorId}")
-	public ResponseEntity<StatisticsResponse> calculateStatistics(@PathVariable int vectorId) {
+	public ResponseEntity<?> calculateStatistics(@PathVariable int vectorId) {
 		VectorEntity vector = vectorService.getVectorById(vectorId);
 
 		if (vector == null) {
-			// Return a 404 response
-			return ResponseEntity.notFound().build();
-		}
+	        // Return a custom error response in JSON format
+	        String errorMessage = "Vector with ID " + vectorId + " not found.";
+	        ErrorResponse errorResponse = new ErrorResponse(errorMessage);
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+	    }
 
 		double mean = calculateMean(vector.getNumbersArray());
 		double standardDeviation = calculateStandardDeviation(vector.getNumbersArray());
@@ -45,28 +49,52 @@ public class StatisticsController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<String> createVector(@RequestBody SizeRequest sizeRequest) {
-		if (sizeRequest == null || sizeRequest.getSize() == null || sizeRequest.getVectorName() == null
-				|| sizeRequest.getVectorName().trim().isEmpty()) {
-			return ResponseEntity.badRequest()
-					.body("Size and non-empty vectorName parameters are required in the request payload.");
-		}
+	public ResponseEntity<String> createVector(@RequestBody VectorRequest vectorRequest) {
+	    try {
+	        validateVectorRequest(vectorRequest);
 
-		try {
+	        // Set other properties if needed
+	        VectorEntity vector = vectorService.generateRandomVector(vectorRequest);
+	        vectorService.saveVector(vector);
 
-			// Set other properties if needed
-			VectorEntity vector = vectorService.generateRandomVector(sizeRequest);
-			vectorService.saveVector(vector);
-
-			return ResponseEntity.ok("Vector created successfully with ID: " + vector.getVectorId());
-		} catch (Exception e) {
-			// Handle any other exceptions that may occur during vector creation or saving
-			return ResponseEntity.status(500).body("Error creating vector: " + e.getMessage());
-		}
+	        return ResponseEntity.ok("Vector created successfully with ID: " + vector.getVectorId());
+	    } catch (ValidationException e) {
+	        // Handle specific validation errors
+	        return ResponseEntity.badRequest().body("Invalid request: " + e.getMessage());
+	    } catch (DataAccessException e) {
+	        // Handle database-related exceptions
+	        return ResponseEntity.status(500).body("Error accessing database Something: " + e.getMessage());
+	    } catch (Exception e) {
+	        // Handle any other unexpected exceptions
+	        return ResponseEntity.status(500).body("Error creating vector: " + e.getMessage());
+	    }
 	}
 
+	// Validate the vectorRequest
+	private void validateVectorRequest(VectorRequest vectorRequest) {
+	    if (vectorRequest == null || vectorRequest.getSize() == null || vectorRequest.getVectorName() == null
+	            || vectorRequest.getVectorName().trim().isEmpty()) {
+	        throw new ValidationException("Size and non-empty name parameters are required.");
+	    }
+
+	    // Additional validation logic if needed
+	}
+
+	// Custom exception for validation errors
+	public static class ValidationException extends RuntimeException {
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public ValidationException(String message) {
+	        super(message);
+	    }
+	}
+
+
 	// Inner class representing the JSON request payload
-	public static class SizeRequest {
+	public static class VectorRequest {
 		private Integer size;
 		String vectorName;
 
@@ -143,5 +171,19 @@ public class StatisticsController {
 			return message;
 		}
 
+	}
+	
+	
+	// Define a custom ErrorResponse class for JSON error responses
+	public static class ErrorResponse {
+	    private final String errorMessage;
+
+	    public ErrorResponse(String errorMessage) {
+	        this.errorMessage = errorMessage;
+	    }
+
+	    public String getErrorMessage() {
+	        return errorMessage;
+	    }
 	}
 }
