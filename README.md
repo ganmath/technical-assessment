@@ -47,8 +47,13 @@ The "Vector Population" submodule focuses on efficiently populating a PostgreSQL
    git clone https://github.com/your-username/technical-assessment.git
    cd technical-assessment
    
-## Prerequisites:
-Ensure that Java JDK 17, PostgreSQL, Maven, and PowerShell are installed on your system.
+## Prerequisites
+Ensure the following software is installed on your system:
+
+- Java JDK 17
+- PostgreSQL Database
+- Maven
+- PowerShell
 
 ## Setup and Database Configuration:
 
@@ -90,11 +95,3 @@ technical-assessment/
 ├── pom.xml
 └── README.md
 ```
-
-## Prerequisites
-Ensure the following software is installed on your system:
-
-Java JDK 17
-PostgreSQL Database
-Maven
-PowerShell
