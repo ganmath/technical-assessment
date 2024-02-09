@@ -10,7 +10,7 @@ if (-not $vectorId) {
 }
 
 # URL for the RESTful microservice
-$url = "http://localhost:8080/api/statistics/$vectorId"
+$url = "http://localhost:8080/api/vectors/$vectorId"
 
 try {
     # Invoke the RESTful API
@@ -19,11 +19,13 @@ try {
     # Extract Mean and Standard Deviation from the response
     $mean = $response.mean
     $stdDev = $response.standardDeviation
+    $message = $response.message
     
     # Display the results
     Write-Output "Vector ID: $vectorId"
     Write-Output "Mean: $mean"
     Write-Output "Standard Deviation: $stdDev"
+    Write-Output "Message: $message"
 } catch {
     # Handle errors
     Write-Output "Error: $_"

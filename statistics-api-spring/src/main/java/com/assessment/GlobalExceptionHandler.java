@@ -1,3 +1,7 @@
+/**
+ * GlobalExceptionHandler class is a controller advice to handle global exceptions in the application.
+ * It specifically handles MethodArgumentTypeMismatchException and provides customized responses.
+ */
 package com.assessment;
 
 import org.springframework.http.HttpStatus;
@@ -9,6 +13,14 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles MethodArgumentTypeMismatchException and returns a ResponseEntity with a customized error message.
+     * If the required type is int, it provides details about the invalid argument type.
+     * For other cases, it returns a general "Bad Request" message.
+     *
+     * @param ex The MethodArgumentTypeMismatchException to be handled.
+     * @return ResponseEntity with an appropriate error message and HTTP status.
+     */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<String> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
         if (ex.getRequiredType() == int.class) {
