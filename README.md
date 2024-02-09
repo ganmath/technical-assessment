@@ -61,21 +61,24 @@ Create a PostgreSQL database.
 Execute the DDL script (ddl_script.sql) in the "vector-population" submodule to create the necessary table.
 
 ## Building and Running:
+```
 mvn clean install
+```
 
 More detailed instructions can be found in the Vector Population README.
 
-3. Statistical Analysis (Statistics API Module):
-2.1 Purpose:
+### 3. Statistical Analysis (Statistics API Module):
+
+#### 2.1 Purpose:
 The "Statistics API" submodule provides a robust API for performing statistical analysis on data stored in the PostgreSQL database.
 
-2.2 Key Features:
-Utilization of Spring Boot for microservice architecture.
-Calculation of mean and standard deviation for given vectors.
-2.3 How to Use:
-Follow the specific instructions in the Statistics API Module README for running the API.
+#### 2.2 Key Features:
+- Utilization of Spring Boot for microservice architecture.
+- Calculation of mean and standard deviation for given vectors.
 
-Explore the API endpoints for statistical calculations.
+#### 2.3 How to Use:
+- Follow the specific instructions in the Statistics API Module README for running the API.
+- Explore the API endpoints for statistical calculations.
 
 ## Project Structure
 The project adheres to a standard Maven project structure with the following high-level layout:
