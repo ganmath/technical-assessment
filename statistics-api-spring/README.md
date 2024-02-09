@@ -11,8 +11,8 @@ This project is a Spring Boot application that provides a RESTful API for workin
 - [Usage](#usage)
   - [Endpoints](#endpoints)
   - [Testing](#testing)
-     -[Postman](#postman)
-     -[PowerShell Scripts](#powershell-scripts)
+     - [Postman](#postman)
+     - [PowerShell Scripts](#powershell-scripts)
 - [Built With](#built-with)
 
 
