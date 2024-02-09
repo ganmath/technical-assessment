@@ -1,6 +1,6 @@
 # Technical Assessment Project
 
-This project is designed for [Provide a brief description of the project's purpose].
+This project is designed for population of a PostgreSQL database with vector of any given size of randomly generated numbers ranging from 1 to 10.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -15,7 +15,7 @@ This project is designed for [Provide a brief description of the project's purpo
 
 ## Project Overview
 
-[Provide a brief overview of the project's purpose and functionality.]
+Handles the population of a PostgreSQL database with vector of any given size of randomly generated numbers ranging from 1 to 100.
 
 ## Project Structure
 
@@ -83,10 +83,10 @@ Execute the provided PowerShell script to run the Java application:
 ```
 
 ## Java Code
-DatabasePopulator.java
-This the main java code which populates the generated numbers in the required table
 
-Utils.java
+- DatabasePopulator.java
+This the main java code which populates the generated numbers in the required table
+- Utils.java
 This is Util class
 
 ## SQL Scripts
@@ -98,5 +98,6 @@ database-population-script.ps1
 This is the script to run the program
 
 ## Property Files
-database.properties
-exception-messages.properties
+
+- database.properties
+- exception-messages.properties
