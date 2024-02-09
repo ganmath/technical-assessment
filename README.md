@@ -8,6 +8,7 @@ The "Technical Assessment Project" is a comprehensive solution designed to addre
 
 ## Index
 
+- [Prerequisites](#prerequisites)
 - [Main Project Overview](#main-project-overview)
 - [Vector Population Module](#1-vector-population-module)
   - [Purpose](#11-purpose)
@@ -18,7 +19,14 @@ The "Technical Assessment Project" is a comprehensive solution designed to addre
   - [Key Features](#22-key-features)
   - [How to Use](#23-how-to-use)
 - [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
+
+
+## Prerequisites
+Ensure the following software is installed on your system:
+- Java JDK 17
+- PostgreSQL Database
+- Maven
+- PowerShell
 
 ## Main Project Overview
 
@@ -47,14 +55,6 @@ The "Vector Population" submodule focuses on efficiently populating a PostgreSQL
    git clone https://github.com/your-username/technical-assessment.git
    cd technical-assessment
    
-## Prerequisites
-Ensure the following software is installed on your system:
-
-- Java JDK 17
-- PostgreSQL Database
-- Maven
-- PowerShell
-
 ## Setup and Database Configuration:
 
 Create a PostgreSQL database.
