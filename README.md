@@ -2,9 +2,9 @@
 
 The "Technical Assessment Project" is a comprehensive solution designed to address various aspects of data management, statistical analysis, and Java development. This multi-module project encompasses two distinct submodules, each serving specific functionalities:
 
-1. [Vector Population Module](vector-population/README.md): Handles the population of a PostgreSQL database with generated data.
+1. [Vector Population Module](vector-population/README.md): Handles the population of a PostgreSQL database with vector of any given size of randomly generated numbers ranging from 1 to 100.
 
-2. [Statistics API Module](statistics-api-spring/README.md): Provides an API for statistical analysis on the populated data.
+2. [Statistics API Module](statistics-api-spring/README.md): Provides an API for statistical analysis on the populated data. This API also helps to create vector of numbers mentioned above.
 
 ## Index
 
@@ -26,7 +26,7 @@ The primary objectives of the "Technical Assessment Project" include:
 
 ### 1. Modular Architecture:
 
-The project follows a modular architecture, allowing for focused development, maintainability, and scalability. Each submodule operates independently, serving a specific purpose within the broader technical assessment context.
+The project follows a modular architecture, allowing for focused development, maintainability, and scalability. Each submodule operates independently, serving a purpose of creating vectors and it statistics.
 
 ### 2. Data Population (Vector Population Module):
 
