@@ -1,4 +1,3 @@
-// DatabasePopulator.java
 package com.assessment;
 
 import java.io.IOException;
@@ -7,6 +6,27 @@ import java.sql.*;
 import java.util.Arrays;
 import java.util.Properties;
 
+/**
+ * DatabasePopulator is a utility class for populating the database with random vector data.
+ * It reads database connection properties and SQL queries from configuration files and uses
+ * an exception handling mechanism provided by {@link DatabaseExceptionHandler}.
+ *
+ * <p>The class contains a main method {@link #main(String[])} for executing the population process.
+ *
+ * <p>Usage example:
+ * <pre>
+ * {@code
+ * // Configure a custom exception handler
+ * DatabaseExceptionHandler.setupExceptionHandler();
+ *
+ * // Run the main method to populate the database with random vector data
+ * DatabasePopulator.main(new String[]{});
+ * }
+ * </pre>
+ *
+ * @author Gaanesh
+ * @version 1.0
+ */
 public class DatabasePopulator {
 
 	private static final String PROPERTIES_FILE = "database.properties";
@@ -26,6 +46,12 @@ public class DatabasePopulator {
 		DatabaseExceptionHandler.setupExceptionHandler();
 	}
 
+	
+	/**
+     * Main method to execute the population process.
+     *
+     * @param args command-line arguments (not used)
+     */	
 	public static void main(String[] args) {
 		ExceptionHandlerFunctionalInterface<Void> handler = () -> {
 			Class.forName(driver);
