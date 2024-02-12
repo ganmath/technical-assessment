@@ -93,11 +93,9 @@ The src/main/scripts folder contains PowerShell scripts for testing the applicat
 
 The API provides the following endpoints:
 
-1. GET /api/vectors/{vectorId}: Retrieve a vector by its ID.
+1. POST /api/vectors/create: Create a new vector based on the provided request.
 
-2. POST /api/vectors/create: Create a new vector based on the provided request.
-
-3. GET /api/vectors/{vectorId}: Calculate statistics (mean and standard deviation) for the vector with the given ID.
+2. GET /api/vectors/{vectorId}: Calculate statistics (mean and standard deviation) for the vector with the given ID.
 
 
 Please refer to the StatisticsController for more details on the endpoints.
@@ -113,14 +111,14 @@ PowerShell scripts can also be used to test the endpoints of the Spring Boot app
 
 get_statistics.ps1: Retrieves statistics (mean and standard deviation) for a specified vector ID.
 
-```
-./get_statistics.ps1 <vectorId>
+```powershell
+./src/main/scripts/get_statistics.ps1 <vectorId>
 
 ```
 Replace <vectorId>, <size>, and <vectorName> with the actual values you want to use for testing.create_vector.ps1: Creates a new vector with specified size and vector name.
 
-```
-./create_vector.ps1 <size> <vectorName>
+```powershell
+./src/main/scripts/create_vector.ps1 <size> <vectorName>
 
 ```
 
