@@ -23,6 +23,7 @@ import com.assessment.service.VectorService;
 
 @RestController
 @RequestMapping("/api/vectors")
+@Api(tags = "Statistics API", description = "Endpoints for calculating statistics and creating vectors")
 public class StatisticsController {
 
 	private static final Logger log = LoggerFactory.getLogger(StatisticsController.class);
@@ -85,11 +86,11 @@ public class StatisticsController {
 		HttpStatus status;
 
 		if (e instanceof HttpMediaTypeNotAcceptableException) {
-			errorMessage = "Requested media type is not supported.";
+			errorMessage = defaultMessage +" Requested media type is not supported.";
 			status = HttpStatus.NOT_ACCEPTABLE;
 		} else if (e instanceof DataAccessException) {
 			// Handle specific database-related exceptions
-			errorMessage = "Error accessing the database: " + e.getMessage();
+			errorMessage = defaultMessage +" Error accessing the database: " + e.getMessage();
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		} else if (e instanceof ValidationException) {
 			// Handle specific validation errors
@@ -97,7 +98,7 @@ public class StatisticsController {
 			status = HttpStatus.BAD_REQUEST;
 		} else {
 			// Handle any other unexpected exceptions
-			errorMessage = "Unexpected exception occurred: " + e.getMessage();
+			errorMessage = defaultMessage + " Unexpected exception occurred: " + e.getMessage();
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 			log.error(errorMessage, e); // Log the unexpected exception
 		}
@@ -219,17 +220,6 @@ public class StatisticsController {
 			this.vectorName = vectorName;
 		}
 
-		public String getMessage() {
-			return message;
-		}
-
-		public int getVectorId() {
-			return vectorId;
-		}
-
-		public String getVectorName() {
-			return vectorName;
-		}
 
 		// Getters for JSON serialization...
 	}

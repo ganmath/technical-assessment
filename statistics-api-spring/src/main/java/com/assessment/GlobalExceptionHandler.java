@@ -6,6 +6,8 @@ package com.assessment;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -26,11 +28,23 @@ public class GlobalExceptionHandler {
         if (ex.getRequiredType() == int.class) {
             // Handle the case where an invalid integer is provided
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(String.format("Invalid argument type for parameter '%s': %s", ex.getName(), ex.getValue()));
+                .body(String.format("Invalid argument type for parameter from GlobalExceptionHandler '%s': %s", ex.getName(), ex.getValue()));
         }
 
         // For other cases, provide a general error message
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
+    }
+    
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        // Handle the JSON parse error and provide a customized error message
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON payload from GlobalExceptionHandler1: " + ex.getMessage());
+    }
+    
+    @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
+    public ResponseEntity<String> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex) {
+        // Customize the error message based on the specific scenario
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Cannot produce acceptable response from GlobalExceptionHandler1 : " + ex.getMessage());
     }
 
     // Additional exception handlers can be added here
