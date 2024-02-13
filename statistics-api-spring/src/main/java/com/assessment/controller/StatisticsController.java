@@ -23,7 +23,6 @@ import com.assessment.service.VectorService;
 
 @RestController
 @RequestMapping("/api/vectors")
-@Api(tags = "Statistics API", description = "Endpoints for calculating statistics and creating vectors")
 public class StatisticsController {
 
 	private static final Logger log = LoggerFactory.getLogger(StatisticsController.class);
