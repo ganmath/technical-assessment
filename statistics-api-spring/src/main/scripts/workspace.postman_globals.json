@@ -1,0 +1,33 @@
+{
+	"id": "0970f0f2-2d13-4503-80c5-49f4b90d4acb",
+	"values": [
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "proto",
+			"value": "http",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "your.app.dev-url",
+			"value": "http://localhost:8080",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-02-13T19:09:03.884Z",
+	"_postman_exported_using": "Postman/10.22.13"
+}

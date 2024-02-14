@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "26ae6184-3895-4745-b8e8-5cc3678bb105",
+		"name": "Statistics API - Spring",
+		"description": "Postman collection for testing Statistics API endpoints in Spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21510462",
+		"_collection_link": "https://martian-escape-982367.postman.co/workspace/d8f4a30e-fcfe-442a-b7e8-ee468d9fae7e/collection/21510462-26ae6184-3895-4745-b8e8-5cc3678bb105?action=share&source=collection_link&creator=21510462"
+	},
+	"item": [
+		{
+			"name": "Calculate Statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{proto}}://{{host}}:{{port}}/api/vectors/11",
+					"protocol": "{{proto}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"vectors",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Vector",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"size\": 5, \"vectorName\": \"TestVector\"}"
+				},
+				"url": {
+					"raw": "{{proto}}://{{host}}:{{port}}/api/vectors/create",
+					"protocol": "{{proto}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"vectors",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
