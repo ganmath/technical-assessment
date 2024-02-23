@@ -26,16 +26,16 @@ public class OpenAPIConfig {
         Server prodServer = new Server().url(prodUrl).description("Production Server");
 
         Contact contact = new Contact()
-                .email("your.email@example.com")
-                .name("Your Name")
-                .url("https://www.yourwebsite.com");
+                .email("ganomkar@gmail.com")
+                .name("Ganesh Bhat")
+                .url("https://www.mywebsite.com");
 
-        License license = new License().name("Your License").url("https://www.yourlicenseurl.com");
+        License license = new License().name("My License").url("https://www.mylicenseurl.com");
 
         return new OpenAPI()
-                .info(new Info().title("Your API Title")
+                .info(new Info().title("Statistics API")
                         .version("1.0")
-                        .description("Your API Description")
+                        .description("First API generates the vectors of any given size with vector ID and Second API Calculates the statistics for a given Vector ID")
                         .termsOfService("https://www.terms-of-service-url.com")
                         .contact(contact)
                         .license(license))
