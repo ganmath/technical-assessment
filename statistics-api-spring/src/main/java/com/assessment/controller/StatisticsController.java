@@ -48,7 +48,7 @@ public class StatisticsController {
 	 * @return ResponseEntity containing the calculated statistics or an error
 	 *         response.
 	 */
-	@GetMapping("/{vectorId}")
+	@GetMapping("/{vectorId}")	
 	public ResponseEntity<?> calculateStatistics(@PathVariable int vectorId) {
 		VectorEntity vector = vectorService.getVectorById(vectorId);
 
@@ -85,11 +85,11 @@ public class StatisticsController {
 		HttpStatus status;
 
 		if (e instanceof HttpMediaTypeNotAcceptableException) {
-			errorMessage = "Requested media type is not supported.";
+			errorMessage = defaultMessage + " Requested media type is not supported.";
 			status = HttpStatus.NOT_ACCEPTABLE;
 		} else if (e instanceof DataAccessException) {
 			// Handle specific database-related exceptions
-			errorMessage = "Error accessing the database: " + e.getMessage();
+			errorMessage = defaultMessage + " Error accessing the database: " + e.getMessage();
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		} else if (e instanceof ValidationException) {
 			// Handle specific validation errors
@@ -97,7 +97,7 @@ public class StatisticsController {
 			status = HttpStatus.BAD_REQUEST;
 		} else {
 			// Handle any other unexpected exceptions
-			errorMessage = "Unexpected exception occurred: " + e.getMessage();
+			errorMessage = defaultMessage + " Unexpected exception occurred: " + e.getMessage();
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 			log.error(errorMessage, e); // Log the unexpected exception
 		}
@@ -159,7 +159,6 @@ public class StatisticsController {
 		// Additional validation logic if needed
 	}
 
-
 	/**
 	 * Inner class representing the JSON response structure for calculated
 	 * statistics.
@@ -209,16 +208,6 @@ public class StatisticsController {
 	 * Inner class representing the JSON response structure for creating a vector.
 	 */
 	public static class CreateVectorResponse {
-		private final String message;
-		private final int vectorId;
-		private final String vectorName;
-
-		public CreateVectorResponse(String message, int vectorId, String vectorName) {
-			this.message = message;
-			this.vectorId = vectorId;
-			this.vectorName = vectorName;
-		}
-
 		public String getMessage() {
 			return message;
 		}
@@ -229,6 +218,16 @@ public class StatisticsController {
 
 		public String getVectorName() {
 			return vectorName;
+		}
+
+		private final String message;
+		private final int vectorId;
+		private final String vectorName;
+
+		public CreateVectorResponse(String message, int vectorId, String vectorName) {
+			this.message = message;
+			this.vectorId = vectorId;
+			this.vectorName = vectorName;
 		}
 
 		// Getters for JSON serialization...
